@@ -1,8 +1,8 @@
 import pygame
 import random
-from circleshape import CircleShape
+from core.circleshape import CircleShape
 from constants import LINE_WIDTH
-from particles import Particle
+from effects.particles import Particle
 
 class Bomb(CircleShape):
     def __init__(self, x, y):

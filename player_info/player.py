@@ -1,28 +1,10 @@
 import pygame
-from circleshape import CircleShape
+from core.circleshape import CircleShape
 from constants import PLAYER_RADIUS, LINE_WIDTH, PLAYER_TURN_SPEED, PLAYER_SPEED, PLAYER_SHOOT_SPEED, PLAYER_SHOOT_COOLDOWN_SECONDS, SHOOT_BAR_MAX, SHOOT_BAR_FILL_RATE, SHOOT_BAR_COOLDOWN_RATE, SHOOT_BAR_RECOVERY_FRACTION, SCREEN_WIDTH, SCREEN_HEIGHT
-from shot import Shot
-from particles import Particle
+from player_info.shot import Shot
+from effects.particles import Particle
+from core.ui import draw_health_bar, draw_shoot_bar  # re-export for existing imports
 import random
-
-def draw_health_bar(surface, x, y, health, max_health):
-    # Background (transparent or dark)
-    pygame.draw.rect(surface, (50, 50, 50), (x, y, 200, 20))
-    # Foreground (pure white)
-    current_width = (health / max_health) * 200
-    pygame.draw.rect(surface, (255, 255, 255), (x, y, current_width, 20))
-    # Border
-    pygame.draw.rect(surface, (255, 255, 255), (x, y, 200, 20), 2)
-
-def draw_shoot_bar(surface, x, y, heat, max_heat, overheated):
-    # Background
-    pygame.draw.rect(surface, (50, 50, 50), (x, y, 200, 20))
-    # Foreground (white)
-    current_width = (heat / max_heat) * 200
-    pygame.draw.rect(surface, (255, 255, 255), (x, y, current_width, 20))
-    # Border
-    color = (255, 100, 100) if overheated else (255, 255, 255)
-    pygame.draw.rect(surface, color, (x, y, 200, 20), 2)
 
 class Player(CircleShape):
     def __init__(self, x, y):
